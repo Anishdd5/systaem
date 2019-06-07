@@ -84,7 +84,7 @@ if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
 -⚠ صيانه كل يوم
 -💵 مجاني بل كامل 
 -📚 البوت عربي و سيتم اضافه اللغه النكليزية
-¤ Ryad For Games البوت خاص ب] ¤
+¤ [Aռɨֆ_ʍǟʟʊʍʏǟτ|ɢǟʍϵrツ  #0976البوت خاص ب] ¤
 **
         ***__General orders__***
 **
@@ -119,7 +119,7 @@ if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
 ✴#color 50 /انشاء 50 لون』
 ✴#mute < mention > ➾ اسكات عضو
 ✴#unmute <mention> ➾ فك الاسكات من العضو
-✴#bc  『خيارات البرودكاست』
+✴#bc 『خيارات البرودكاست』
 ✴#ce لمح لشات بعدد
 ✴#role @user <rank> / لأعطاء رتبة لعضو معين
 ✴#roleremove @user <rank> / لازالة الرتبة من شخص معين
@@ -140,6 +140,7 @@ if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
 ✴#لعبه صراحه/صراحه』
 ✴#xo  لعبة اكس او
 ✴#مريم
+✴# يعطيك عقابات لازم تسويها  عقاب 
 **
    
 `]
@@ -1053,79 +1054,7 @@ client.on('message' , message => {
   }
 }
  });
- 
- var prefix = "#";
 
-client.on('message',async message => {
-  var room;
-  var title;//HactorMC
-  var duration;//HactorMC
-  var gMembers;
-  var filter = m => m.author.id === message.author.id;
-  if(message.content.startsWith(prefix + "giveaway")) {
-     //return message.channel.send('**في مشكله ببعض الاساسيات من فضلك انتظر شوي**');
-    if(!message.guild.member(message.author).hasPermission('MANAGE_GUILD')) return message.channel.send(':heavy_multiplication_x:| **يجب أن يكون لديك خاصية التعديل على السيرفر**');
-    message.channel.send(`**من فضلك اكب اسم الروم بدون منشن ( # )**`).then(msgg => {
-      message.channel.awaitMessages(filter, {
-        max: 1,//HactorMC
-        time: 20000,
-        errors: ['time']
-      }).then(collected => {
-        let room = message.guild.channels.find('name', collected.first().content);
-        if(!room) return message.channel.send('**لم اقدر علي ايجاد الروم | اعد المحاوله لاحقا**');
-        room = collected.first().content;
-        collected.first().delete();
-        msgg.edit('**اكتب مدة القيف اواي بالدقائق**').then(msg => {
-          message.channel.awaitMessages(filter, {
-            max: 1,//HactorMC
-            time: 20000,
-            errors: ['time']
-          }).then(collected => {
-            if(isNaN(collected.first().content)) return message.channel.send(':heavy_multiplication_x:| **يجب عليك ان تحدد وقت زمني صحيح.. ``يجب عليك اعادة كتابة الامر``**');
-            duration = collected.first().content * 60000;
-            collected.first().delete();
-            msgg.edit(':eight_pointed_black_star:| **اكتب على ماذا تريد القيف اواي**').then(msg => {
-              message.channel.awaitMessages(filter, {
-                max: 1,
-                time: 20000,
-                errors: ['time']
-              }).then(collected => {
-                title = collected.first().content;
-                collected.first().delete();
-                try {
-                  let giveEmbed = new Discord.RichEmbed()
-                  .setAuthor(message.guild.name, message.guild.iconURL)
-                  .setTitle(title)
-                  .setDescription(`المدة : ${duration / 60000} دقائق`)
-                  .setFooter(message.author.username, message.author.avatarURL);
-                  message.guild.channels.find('name', room).send(giveEmbed).then(m => {
-                     let re = m.react('🎉');
-                     setTimeout(() => {
-                       let users = m.reactions.get("🎉").users;
-                       let list = users.array().filter(u => u.id !== m.author.id);
-                       let gFilter = list[Math.floor(Math.random() * list.length) + 0];
-                         if(users.size === 1) gFilter = '**لم يتم التحديد**';
-                       let endEmbed = new Discord.RichEmbed()
-                       .setAuthor(message.author.username, message.author.avatarURL)
-                       .setTitle(title)
-                       .addField('انتهى القيف اواي !',`الفائز هو : ${gFilter}`)
-                       .setFooter(message.guild.name, message.guild.iconURL);
-                       m.edit(endEmbed);
-                     },duration);
-                   });
-                  msgg.edit(`:heavy_check_mark:| **تم اعداد القيف اواي**`);
-                } catch(e) {
-                  msgg.edit(`:heavy_multiplication_x:| **لم اقدر علي اعداد القيف اواي بسبب عدم توفر البرمشن المطلوب**`);
-                  console.log(e);
-                }
-              });
-            });
-          });
-        });
-      });
-    });
-  }
-});
 
 
 
@@ -1145,7 +1074,7 @@ client.on("message", async message => {
 			1-${prefix}قبول @user <rank>
 			2-${prefix}رفض @user
 			
-			||★𝕽ʏÃ𝕯 ©||`);
+			||ANIS_hdd ©||`);
             message.channel.sendEmbed(help);
     }
 });
@@ -1321,17 +1250,6 @@ if(!message.channel.guild) return message.channel.send('**هذا الأمر فق
   }
 
 
-});
-client.on('guildMemberAdd', member => {
-    var embed = new Discord.RichEmbed()
-    .setThumbnail(member.user.avatarURL)
-  .addField("*** شكرا الانضمامك إلـينـا حبيبي ***" ,member.user.username )
-    .setDescription('**# __welcome__ **to ** ~~server~~**')// كلام ترحيب بعضو
-    .setColor('RANDOM')
-    .setImage('http://www.animatedimages.org/data/media/707/animated-welcome-image-0291.gif')// صور ترحيب
-var channel =member.guild.channels.find('name', '✨щéļḉσᶆé✨')// اسم شات ترحيب
-if (!channel) return;
-channel.send({embed : embed});
 });
 
 client.on('message', message => {
@@ -2196,6 +2114,157 @@ if (command == "cv") {
     message.guild.createChannel(args.join(' '), 'voice');
 message.channel.sendMessage('تم انشاء روم صوتى')
 }
+});
+
+client.on('message',async message => {
+  var room;
+  var title;
+  var duration;
+  var gMembers;
+  var filter = m => m.author.id === message.author.id;
+  if(message.content.startsWith(prefix + "giveaway")) {
+     //return message.channel.send(':heavy_multiplication_x:| **هذا الامر معطل حاليا.. ``حاول في وقت لاحق``**');
+    if(!message.guild.member(message.author).hasPermission('MANAGE_GUILD')) return message.channel.send(':heavy_multiplication_x:| **يجب أن يكون لديك خاصية التعديل على السيرفر**');
+    message.channel.send(`:eight_pointed_black_star:| **منشن الروم الذي تريد به القيف اواي**`).then(msgg => {
+      message.channel.awaitMessages(filter, {
+        max: 1,
+        time: 20000,
+        errors: ['time']
+      }).then(collected => {
+        let room = message.guild.channels.find('giveaway', collected.first().content);
+        if(!room) return message.channel.send(':heavy_multiplication_x:| **لم اقدر على ايجاد الروم المطلوب**');
+        room = collected.first().content;
+        collected.first().delete();
+        msgg.edit(':eight_pointed_black_star:| **اكتب مدة القيف اواي**').then(msg => {
+          message.channel.awaitMessages(filter, {
+            max: 1,
+            time: 20000,
+            errors: ['time']
+          }).then(collected => {
+            if(isNaN(collected.first().content)) return message.channel.send(':heavy_multiplication_x:| **يجب عليك ان تحدد وقت زمني صحيح.. ``يجب عليك اعادة كتابة الامر``**');
+            duration = collected.first().content * 60000;
+            collected.first().delete();
+            msgg.edit(':eight_pointed_black_star:| **واخيرا اكتب على ماذا تريد القيف اواي**').then(msg => {
+              message.channel.awaitMessages(filter, {
+                max: 1,
+                time: 20000,
+                errors: ['time']
+              }).then(collected => {
+                title = collected.first().content;
+                collected.first().delete();
+                try {
+                  let giveEmbed = new Discord.RichEmbed()
+                  .setAuthor(message.guild.name, message.guild.iconURL)
+                  .setTitle(title)
+                  .setDescription(`المدة : ${duration / 60000} دقائق`)
+                  .setFooter(message.author.username, message.author.avatarURL);
+                  message.guild.channels.find('name', room).send(giveEmbed).then(m => {
+                     let re = m.react('🎉');
+                     setTimeout(() => {
+                       let users = m.reactions.get("🎉").users;
+                       let list = users.array().filter(u => u.id !== m.author.id);
+                       let gFilter = list[Math.floor(Math.random() * list.length) + 0];
+                         if(users.size === 1) gFilter = '**لم يتم التحديد**';
+                       let endEmbed = new Discord.RichEmbed()
+                       .setAuthor(message.author.username, message.author.avatarURL)
+                       .setTitle(title)
+                       .addField('انتهى القيف اواي !',`الفائز هو : ${gFilter}`)
+                       .setFooter(message.guild.name, message.guild.iconURL);
+                       m.edit(endEmbed);
+                     },duration);
+                   });
+                  msgg.edit(`:heavy_check_mark:| **تم اعداد القيف اواي**`);
+                } catch(e) {
+                  msgg.edit(`:heavy_multiplication_x:| **لم اقدر على اعداد القيف اواي بسبب نقص الخصائص**`);
+                  console.log(e);
+                }
+              });
+            });
+          });
+        });
+      });
+    });
+  }
+});
+
+client.on('guildMemberAdd', member => {
+    var embed = new Discord.RichEmbed()
+    .setThumbnail(member.user.avatarURL)
+  .addField("*** شكرا الانضمامك إلـينـا حبيبي ***" ,member.user.username )
+    .setDescription('**# ``-`` __W__elcome __T__ø server 🥂**')// كلام ترحيب بعضو
+    .setColor('RANDOM')
+    .setImage('http://www.animatedimages.org/data/media/707/animated-welcome-image-0291.gif')// صور ترحيب
+var channel =member.guild.channels.find('name', '✨щéļḉσᶆé✨')// اسم شات ترحيب
+if (!channel) return;
+channel.send({embed : embed});
+});
+
+const Za7f = [
+    "**صورة وجهك او رجلك او خشمك او يدك**.",
+    "**اصدر اي صوت يطلبه منك الاعبين**.",
+    "**سكر خشمك و قول كلمة من اختيار الاعبين الي معك**.",
+    "**روح الى اي قروب عندك في الواتس اب و اكتب اي شيء يطلبه منك الاعبين  الحد الاقصى 3 رسائل**.",
+    "**قول نكتة اذا و ��ازم احد الاعبين يضحك اذا محد ضحك يعطونك ميوت الى ان يجي دورك مرة ثانية**.",
+    "**سمعنا صوتك و غن اي اغنية من اختيار الاعبين الي معك**.",
+    "**ذي المرة لك لا تعيدها**.",
+    "**ارمي جوالك على الارض بقوة و اذا انكسر صور الجوال و ارسله في الشات العام**.",
+    "**صور اي شيء يطلبه منك الاعبين**.",
+    "**اتصل على ابوك و قول له انك رحت مع بنت و احين هي حامل....**.",
+    "**سكر خشمك و قول كلمة من اختيار الاعبين الي معك**.",
+    "**سو مشهد تمثيلي عن مصرية بتولد**.",
+    "**اعطي اي احد جنبك كف اذا مافيه احد جنبك اعطي نفسك و نبي نسمع صوت الكف**.",
+    "**ذي المرة لك لا تعيدها**.",
+    "**ارمي جوالك على الارض بقوة و اذا انكسر صور الجوال و ارسله في الشات العام**.",
+    "**روح عند اي احد بالخاص و قول له انك تحبه و الخ**.",
+    "**اكتب في الشات اي شيء يطلبه منك الاعبين في الخاص**.",
+    "**قول نكتة اذا و لازم احد الاعبين يضحك اذا محد ضحك يعطونك ميوت الى ان يجي دورك مرة ثانية**.",
+    "**سامحتك خلاص مافيه عقاب لك :slight_smile:**.",
+    "**اتصل على احد من اخوياك  خوياتك , و اطلب منهم مبلغ على اساس انك صدمت بسيارتك**.",
+    "**غير اسمك الى اسم من اختيار الاعبين الي معك**.",
+    "**اتصل على امك و قول لها انك تحبها :heart:**.",
+    "**لا يوجد سؤال لك سامحتك :slight_smile:**.",
+    "**قل لواحد ماتعرفه عطني كف**.",
+    "**منشن الجميع وقل انا اكرهكم**.",
+    "**اتصل لاخوك و قول له انك سويت حادث و الخ....**.",
+    "**روح المطبخ و اكسر صحن او كوب**.",
+    "**اعطي اي احد جنبك كف اذا مافيه احد جنبك اعطي نفسك و نبي نسمع صوت ا��كف**.",
+    "**قول لاي بنت موجود في الروم كلمة حلوه**.",
+    "**تكلم باللغة الانجليزية الين يجي دورك مرة ثانية لازم تتكلم اذا ما تكلمت تنفذ عقاب ثاني**.",
+    "**لا تتكلم ولا كلمة الين يجي دورك مرة ثانية و اذا تكلمت يجيك باند لمدة يوم كامل من السيرفر**.",
+    "**قول قصيدة **.",
+    "**تكلم باللهجة السودانية الين يجي دورك مرة ثانية**.",
+    "**اتصل على احد من اخوياك  خوياتك , و اطلب منهم مبلغ على اساس انك صدمت بسيارتك**.",
+    "**اول واحد تشوفه عطه كف**.",
+    "**سو مشهد تمثيلي عن اي شيء يطلبه منك الاعبين**.",
+    "**سامحتك خلاص مافيه عقاب لك :slight_smile:**.",
+    "**اتصل على ابوك و قول له انك رحت مع بنت و احين هي حامل....**.",
+    "**روح اكل ملح + ليمون اذا مافيه اكل اي شيء من اختيار الي معك**.",
+    "**تاخذ عقابين**.",
+    "**قول اسم امك افتخر بأسم امك**.",
+    "**ار��ي اي شيء قدامك على اي احد موجود او على نفسك**.",
+    "**اذا انت ولد اكسر اغلى او احسن عطور عندك اذا انتي بنت اكسري الروج حقك او الميك اب حقك**.",
+    "**اذهب الى واحد ماتعرفه وقل له انا كيوت وابي بوسه**.",
+    "**تتصل على الوالده  و تقول لها خطفت شخص**.",
+    "** تتصل على الوالده  و تقول لها تزوجت با سر**.",
+    "**����تصل على الوالده  و تقول لها  احب وحده**.",
+      "**تتصل على شرطي تقول له عندكم مطافي**.",
+      "**خلاص سامحتك**.",
+      "** تصيح في الشارع انا  مجنوون**.",
+      "** تروح عند شخص تقول له احبك**.",
+  
+]
+
+ client.on('message', message => {
+   if (message.content.startsWith(prefix + "عقاب")) {
+                if(!message.channel.guild) return message.reply('** This command only for servers**');
+  var embed = new Discord.RichEmbed()
+  .setColor('RANDOM')
+   .setThumbnail(message.author.avatarURL) 
+ .addField('Plus Bot' ,
+  `${Za7f[Math.floor(Math.random() * Za7f.length)]}`)
+  message.channel.sendEmbed(embed);
+  console.log('[38ab] Send By: ' + message.author.username)
+    }
 });
 
 client.login(process.env.BOT_TOKEN)
