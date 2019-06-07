@@ -1075,7 +1075,7 @@ client.on("message", async message => {
 			1-${prefix}قبول @user <rank>
 			2-${prefix}رفض @user
 			
-			||ANIS_hdd ©||`);
+			||System Bot ©||`);
             message.channel.sendEmbed(help);
     }
 });
