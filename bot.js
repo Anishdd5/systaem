@@ -1145,7 +1145,7 @@ client.on("message", async message => {
 			1-${prefix}قبول @user <rank>
 			2-${prefix}رفض @user
 			
-			||ANIS_hdd ©||`);
+			||★𝕽ʏÃ𝕯 ©||`);
             message.channel.sendEmbed(help);
     }
 });
